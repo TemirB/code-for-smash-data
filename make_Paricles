@@ -1,0 +1,21 @@
+# Директория с исходниками
+SRC_DIR = /home/tahea/smash/build/data/oscarDst/scripts
+
+# Имя исполняемого файла
+TARGET = Particles
+
+# Флаги компиляции и линковки для ROOT
+CXX = g++
+CXXFLAGS = -O2 -Wall -Wextra `root-config --cflags`
+LDFLAGS = `root-config --glibs`
+
+# Правило по умолчанию
+all: $(TARGET)
+
+# Правило для создания исполняемого файла
+$(TARGET): $(SRC_DIR)/Particles.C
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC_DIR)/Particles.C $(LDFLAGS)
+
+# Правило для очистки каталога
+clean:
+	rm -f $(TARGET)
